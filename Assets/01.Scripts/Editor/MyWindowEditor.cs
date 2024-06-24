@@ -5,7 +5,6 @@ using UnityEngine;
 public class MyWindowEditor : EditorWindow
 {
     ObjectManager objectEditManager;
-    PlayerController playerController;
 
     [MenuItem("도구/정렬 도구 %F1")] // Ctrl + F1 단축키 설정  
     public static void ShowWindow()
@@ -31,10 +30,8 @@ public class MyWindowEditor : EditorWindow
         if (GUILayout.Button("초기화 포지션으로 일괄 정렬\n(주의 : 맵이 완전히 초기화됩니다.)", GUILayout.Width(400), GUILayout.Height(80)))
         {
             objectEditManager = FindAnyObjectByType<ObjectManager>();
-            playerController = FindAnyObjectByType<PlayerController>();
 
-            if (playerController != null && playerController.MapEdit)
-                objectEditManager.SortObjects();
+            objectEditManager.SortObjects();
         }
 
         GUILayout.FlexibleSpace(); 

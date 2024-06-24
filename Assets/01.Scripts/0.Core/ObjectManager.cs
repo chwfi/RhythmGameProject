@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
@@ -13,5 +10,5 @@ public class ObjectManager : MonoBehaviour
         {
             obj.transform.position = new Vector3(0, -10, 0);
         }
-    }    
+    }
 }

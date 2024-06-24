@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PoolableMono
 {
     [Header("Values")]
     [SerializeField] private float _speed;
+
+    [Header("Setting")]
+    [SerializeField] private LayerMask _objLayer;
 
     [Header("Option")]
     public bool MapEdit = true;
@@ -37,10 +42,26 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             if (MapEdit) CreateObject();
+
             Flip();
+            CheckObjects();
+        }
+    }
+
+    private void CheckObjects()
+    {
+        Collider2D coll = Physics2D.OverlapBox(transform.position, Vector2.one, 0, _objLayer);
+
+        if (coll != null)
+        {
+            coll.gameObject.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

@@ -19,4 +19,12 @@ public class GameManager : MonoSingleton<GameManager>
 
         _poolingListSO.PoolingList.ForEach(p => PoolManager.Instance.CreatePool(p.prefab, p.poolCount));
     }
+
+    public void SetPlayer()
+    {
+        PoolableMono player = PoolManager.Instance.Pop("Player");
+        player.transform.position = Vector3.zero;
+        player.transform.rotation = Quaternion.Euler(0f, 0f, 45f);
+        CameraManager.Instance.SetTarget(player.transform);
+    }
 }

@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource audioSource;
+    private AudioSource _audioSource;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
-        audioSource.clip.LoadAudioData();
+        _audioSource.clip.LoadAudioData();
         StartCoroutine(PlayAudioWhenLoaded());
     }
 
     private IEnumerator PlayAudioWhenLoaded()
     {
-        while (audioSource.clip.loadState != AudioDataLoadState.Loaded)
+        while (_audioSource.clip.loadState != AudioDataLoadState.Loaded)
         {
             yield return null;
         }
 
-        audioSource.Play();
+        GameManager.Instance.SetPlayer();
+        _audioSource.Play();
     }
 }

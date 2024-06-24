@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3949275207748425802}
   - component: {fileID: 7774175373461783626}
   - component: {fileID: 2831149775656468209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PersistentObject_Square
   m_TagString: PersistentObj
   m_Icon: {fileID: 0}
