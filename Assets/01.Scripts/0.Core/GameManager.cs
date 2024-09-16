@@ -8,7 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField]
     private PoolingListSO _poolingListSO;
 
-    private void Start()
+    private void Awake()
     {
         MakePool();
     }

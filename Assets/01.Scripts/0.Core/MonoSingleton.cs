@@ -20,9 +20,4 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
-
-    public virtual void Awake()
-    {
-
-    }
 }
