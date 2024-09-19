@@ -44,10 +44,16 @@ public class PlayerController : PoolableMono
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (MapEdit) CreateObject();
-
-            Flip();
-            CheckObjects();
+            if (MapEdit)
+            {
+                CreateObject();
+                Flip();
+            }
+            else
+            {
+                Flip();
+                CheckObjects();
+            }
         }
     }
 

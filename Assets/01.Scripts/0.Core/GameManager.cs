@@ -11,6 +11,8 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         MakePool();
+
+        Application.targetFrameRate = 60;
     }
 
     private void MakePool()
