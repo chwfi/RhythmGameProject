@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 450
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4882,7 +4882,7 @@ MonoBehaviour:
   _objLayer:
     serializedVersion: 2
     m_Bits: 128
-  MapEdit: 1
+  MapEdit: 0
   AutoPlay: 0
 --- !u!212 &1577949074326313980
 SpriteRenderer:
