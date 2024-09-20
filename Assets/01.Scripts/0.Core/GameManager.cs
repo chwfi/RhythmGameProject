@@ -13,6 +13,8 @@ public class GameManager : MonoSingleton<GameManager>
         MakePool();
 
         Application.targetFrameRate = 60;
+
+        SetPlayer();
     }
 
     private void MakePool()

@@ -1,8 +1,12 @@
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour
+public class ObjectManager : MonoSingleton<ObjectManager>
 {
     [SerializeField] private GameObject[] _objs;
+
+    [Header("Options")]
+    public bool IsEditMode = false;
+    public bool IsAutoMode = false;
 
     public void SortObjects()
     {

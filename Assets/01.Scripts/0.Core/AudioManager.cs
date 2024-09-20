@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoSingleton<AudioManager>
 {
     private AudioSource _audioSource;
 
@@ -11,17 +11,11 @@ public class AudioManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         _audioSource.clip.LoadAudioData();
-        StartCoroutine(PlayAudioWhenLoaded());
+        //StartCoroutine(PlayAudioWhenLoaded());
     }
 
-    private IEnumerator PlayAudioWhenLoaded()
+    public void PlayAudio()
     {
-        while (_audioSource.clip.loadState != AudioDataLoadState.Loaded)
-        {
-            yield return null;
-        }
-
-        GameManager.Instance.SetPlayer();
         _audioSource.Play();
     }
 }

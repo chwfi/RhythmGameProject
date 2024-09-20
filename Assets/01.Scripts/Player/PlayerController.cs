@@ -12,10 +12,6 @@ public class PlayerController : PoolableMono
     [Header("Setting")]
     [SerializeField] private LayerMask _objLayer;
 
-    [Header("Option")]
-    public bool MapEdit = true;
-    public bool AutoPlay = false;
-
     private bool isRotated = true;
 
     private Queue<NoteObject> _objs = new Queue<NoteObject>();
@@ -44,7 +40,7 @@ public class PlayerController : PoolableMono
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (MapEdit)
+            if (ObjectManager.Instance.IsEditMode)
             {
                 CreateObject();
                 Flip();
@@ -92,7 +88,7 @@ public class PlayerController : PoolableMono
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (AutoPlay)
+        if (ObjectManager.Instance.IsAutoMode)
         {
             Flip();
             collision.gameObject.SetActive(false);
