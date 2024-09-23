@@ -11,11 +11,19 @@ public class AudioManager : MonoSingleton<AudioManager>
         _audioSource = GetComponent<AudioSource>();
 
         _audioSource.clip.LoadAudioData();
-        //StartCoroutine(PlayAudioWhenLoaded());
+        
+        if (ObjectManager.Instance.IsEditMode)     
+            StartCoroutine(PlayAudioWhenLoaded());
     }
 
     public void PlayAudio()
     {
         _audioSource.Play();
+    }
+
+    private IEnumerator PlayAudioWhenLoaded()
+    {
+        yield return new WaitForSeconds(3f);
+        PlayAudio();
     }
 }

@@ -13,4 +13,9 @@ public class NoteObject : MonoBehaviour
 
         _saveTrm._on = ObjectManager.Instance.IsEditMode;
     }
+
+    private void OnDisable() 
+    {
+        ObjectManager.Instance.CreateBlowObject(transform);
+    }
 }

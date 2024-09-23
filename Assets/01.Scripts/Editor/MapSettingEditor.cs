@@ -11,9 +11,8 @@ public class MapSettingEditor : Editor
 
         ObjectManager manager = (ObjectManager)target;
 
-        if (GUILayout.Button("맵 에딧 모드"))
+        if (GUILayout.Button("맵 재정렬하기"))
         {
-            manager.IsEditMode = true;
             manager.SortObjects();
         }
     }
