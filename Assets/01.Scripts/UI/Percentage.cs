@@ -21,9 +21,9 @@ public class Percentage : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         // 0에서 100까지의 비율 계산
-        float progressPercentage = Mathf.Clamp((elapsedTime / songDuration) * 100f, 0f, 100f);
+        float progressPercentage = Mathf.Clamp(elapsedTime / songDuration * 100f, 0f, 100f);
 
         // 텍스트 업데이트
-        _percentageText.text = progressPercentage.ToString("F0"); 
+        _percentageText.text = $"{progressPercentage.ToString("F0")}%";
     }
 }

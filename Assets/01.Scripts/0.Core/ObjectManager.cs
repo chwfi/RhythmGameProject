@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectManager : MonoSingleton<ObjectManager>
 {
@@ -30,8 +31,19 @@ public class ObjectManager : MonoSingleton<ObjectManager>
         if (!IsEditMode)
             Load();    
 
-        var firstNote = _transformDataList.First();
-        firstNote.gameObject.AddComponent<FirstNoteObject>();
+        if (_transformDataList.Count > 0)
+        {
+            var firstNote = _transformDataList.First();
+            firstNote.gameObject.AddComponent<FirstNoteObject>();
+        }
+    }
+
+    private void Update() 
+    {
+        if (IsEditMode && Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void CreateBlowObject(Transform trm, Quaternion quaternion)
