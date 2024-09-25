@@ -10,7 +10,7 @@ public class FirstNoteObject : MonoBehaviour
     {
         _collider = transform.GetComponent<BoxCollider2D>();
 
-        _collider.edgeRadius = 0.52f;
+        _collider.edgeRadius = 0.45f;
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

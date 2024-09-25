@@ -13,7 +13,7 @@ public class MapSettingEditor : Editor
 
         if (GUILayout.Button("맵 재정렬하기"))
         {
-            manager.SortObjects();
+            //manager.SortObjects();
         }
     }
 }

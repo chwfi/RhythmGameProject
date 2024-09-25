@@ -60,6 +60,7 @@ public class PlayerController : PoolableMono
         if (coll != null)
         {
             coll.gameObject.SetActive(false);
+            ObjectManager.Instance.CreateBlowObject(coll.transform, coll.transform.rotation);
         }
         else
         {
@@ -69,15 +70,15 @@ public class PlayerController : PoolableMono
 
     private void CreateObject()
     {
-        if (_objs.Count > 0)
-        {
-            var obj = _objs.Dequeue();
-            obj.transform.position = transform.position;
-        }
-        else
-        {
-            Debug.LogWarning("No more objects to create.");
-        }
+        var instance = ObjectManager.Instance;
+
+        var obj = PoolManager.Instance.Pop("Object_Square") as NoteObject;
+
+        obj.transform.position = transform.position;
+        obj.TransformX = transform.position.x;
+        obj.TransformY = transform.position.y;
+
+        instance.TransformDataList.Add(obj);
     }
 
     public void Flip()
