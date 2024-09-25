@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Rito.Conveniences;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,8 +9,6 @@ public struct TransformData
 
 public class NoteObject : PoolableMono
 {
-    private SaveTransformDuringPlay _saveTrm;
-
     public float TransformX;
     public float TransformY;
 
