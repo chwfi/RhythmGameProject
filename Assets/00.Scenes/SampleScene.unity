@@ -608,7 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754324d466884c54f85a3af78b3718e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blowObjectPrefab: {fileID: 6520292892596909905, guid: ccc02ad2ec2f849b099f9f3a10f1102b, type: 3}
   _transformDataList: []
   IsEditMode: 0
   IsAutoMode: 0
@@ -858,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1362503730
 MonoBehaviour:
   m_ObjectHideFlags: 0

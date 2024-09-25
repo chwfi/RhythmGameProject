@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public struct TransformData
+public struct NoteObjectSaveData
 {
     public float x;
     public float y;
@@ -17,16 +17,16 @@ public class NoteObject : PoolableMono
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, 45));    
     }
 
-    public TransformData ToSaveData()
+    public NoteObjectSaveData ToSaveData()
     {
-        return new TransformData
+        return new NoteObjectSaveData
         {
             x = TransformX,
             y = TransformY
         };
     }
 
-    public void LoadFrom(TransformData saveData)
+    public void LoadFrom(NoteObjectSaveData saveData)
     {
         TransformX = saveData.x;
         TransformY = saveData.y;

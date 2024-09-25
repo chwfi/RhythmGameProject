@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json.Linq;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class ObjectManager : MonoSingleton<ObjectManager>
@@ -11,8 +11,6 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     private const string kSaveFileName = "objectsData.json";
     private string SaveFilePath => Path.Combine(Application.persistentDataPath, kSaveFileName);
     #endregion
-
-    [SerializeField] private BlowObject _blowObjectPrefab;
 
     [SerializeField] private List<NoteObject> _transformDataList;
     public List<NoteObject> TransformDataList => _transformDataList;
@@ -31,11 +29,14 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         if (!IsEditMode)
             Load();    
+
+        var firstNote = _transformDataList.First();
+        firstNote.gameObject.AddComponent<FirstNoteObject>();
     }
 
     public void CreateBlowObject(Transform trm, Quaternion quaternion)
     {
-        var obj = PoolManager.Instance.Pop(_blowObjectPrefab.name);
+        var obj = PoolManager.Instance.Pop("BlowObject");
         obj.transform.position = trm.position;
         obj.transform.rotation = quaternion;
     }
@@ -80,19 +81,21 @@ public class ObjectManager : MonoSingleton<ObjectManager>
         return saveDatas;
     }
 
-    private void LoadSaveDatas(JToken datasToken, Action<TransformData> onSuccess)
+    private void LoadSaveDatas(JToken datasToken, Action<NoteObjectSaveData> onSuccess)
     {
         var datas = datasToken as JArray;
         foreach (var data in datas)
         {
-            var saveData = data.ToObject<TransformData>();
+            var saveData = data.ToObject<NoteObjectSaveData>();
             onSuccess?.Invoke(saveData);
         }
     }
 
-    private void LoadNoteObject(TransformData saveData)
+    private void LoadNoteObject(NoteObjectSaveData saveData)
     {
         var newObj = PoolManager.Instance.Pop("Object_Square") as NoteObject;
         newObj.LoadFrom(saveData);
+        
+        _transformDataList.Add(newObj);
     }
 }

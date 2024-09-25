@@ -14,17 +14,6 @@ public class PlayerController : PoolableMono
 
     private bool isRotated = true;
 
-    private Queue<NoteObject> _objs = new Queue<NoteObject>();
-
-    private void Awake()
-    {
-        NoteObject[] squareObjects = FindObjectsOfType<NoteObject>();
-        foreach (NoteObject obj in squareObjects)
-        {
-            _objs.Enqueue(obj);
-        }
-    }
-
     private void Update()
     {
         PlayerMove();
