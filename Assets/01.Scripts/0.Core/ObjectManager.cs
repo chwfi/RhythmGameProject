@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,6 +56,24 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 
     private bool Load()
     {
+        #if UNITY_IOS
+        TextAsset jsonFile = Resources.Load<TextAsset>("objectsData");
+        if (jsonFile != null)
+        {
+            // JSON 내용을 JObject로 파싱
+            var root = JObject.Parse(jsonFile.text);
+
+            // 데이터 로드 처리
+            LoadSaveDatas(root["objects"], LoadNoteObject);
+
+            Debug.Log("Data loaded from Resources.");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("JSON file not found in Resources.");
+        }
+        #endif
         if (File.Exists(SaveFilePath))
         {
             var jsonContent = File.ReadAllText(SaveFilePath);
