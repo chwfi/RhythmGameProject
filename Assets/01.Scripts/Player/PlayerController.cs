@@ -48,8 +48,11 @@ public class PlayerController : PoolableMono
 
         if (coll != null)
         {
-            coll.gameObject.SetActive(false);
-            ObjectManager.Instance.CreateBlowObject(coll.transform, coll.transform.rotation);
+            if (coll.TryGetComponent(out PoolableMono poolable))
+            {
+                PoolManager.Instance.Push(poolable);
+                ObjectManager.Instance.CreateBlowObject(coll.transform, coll.transform.rotation);
+            }   
         }
         else
         {

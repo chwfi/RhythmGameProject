@@ -11,7 +11,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 {
     #region SavePath
     private const string kSaveFileName = "objectsData.json";
-    private string SaveFilePath => Path.Combine(Application.persistentDataPath, kSaveFileName);
+    private string SaveFilePath => Path.Combine(Application.persistentDataPath, $"{kSaveFileName}{_codeName}");
     #endregion
 
     [SerializeField] private List<NoteObject> _transformDataList;
@@ -20,6 +20,9 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     [Header("Options")]
     public bool IsEditMode = false;
     public bool IsAutoMode = false;
+
+    [Header("Stage CodeName")]
+    [SerializeField] private int _codeName;
 
     private void OnApplicationQuit() 
     {
@@ -57,7 +60,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     private bool Load()
     {
         #if UNITY_IOS
-        TextAsset jsonFile = Resources.Load<TextAsset>("objectsData");
+        TextAsset jsonFile = Resources.Load<TextAsset>($"objectsData{_codeName}");
         if (jsonFile != null)
         {
             // JSON 내용을 JObject로 파싱

@@ -13,8 +13,9 @@ public class FirstNoteObject : MonoBehaviour
         _collider.edgeRadius = 0.35f;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnDisable() 
     {
-        AudioManager.Instance.PlayAudio();    
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayAudio();    
     }
 }
