@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -103,6 +102,16 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 
         File.WriteAllText(SaveFilePath, root.ToString());
         Debug.Log($"Data saved to {SaveFilePath}");
+    }
+
+    public void SaveAsResourceFile()
+    {
+        var root = new JObject
+        {
+            { "objects", CreateSaveDatas(_transformDataList) }
+        };
+
+        File.WriteAllText($"Assets/Resources/objectsData{_codeName}.json", root.ToString());
     }
 
     private JArray CreateSaveDatas(IReadOnlyList<NoteObject> objects)
